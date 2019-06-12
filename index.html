@@ -11,15 +11,37 @@
         var $body = $('body');
         $body.html('');
 
+        var lastMax = 0;
+
         var index = streams.home.length - 1;
+        lastMax = streams.home.length;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text(index + '@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
         }
 
+        var $btn = $('<div><button class="btn btn-default" id="target1">More Tweets</button></div>')
+        $btn.appendTo($body);
+
+
+        $("#target1").click(function(){ 
+            var $newSetOfTweets = $('<div></div>');
+            $newSetOfTweets.html('');
+            var index = streams.home.length - 1;
+            while(index >= 0){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              $tweet.text((index + lastMax) + '@' + tweet.user + ': ' + tweet.message);
+              $tweet.appendTo($newSetOfTweets);
+              index -= 1;
+            }
+            lastMax += streams.home.length;
+            $newSetOfTweets.prependTo($body);
+            $btn.appendTo($body);
+        });
       });
 
     </script>
