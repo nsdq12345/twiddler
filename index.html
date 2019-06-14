@@ -11,38 +11,72 @@
         var $body = $('body');
         $body.html('');
 
-        var lastMax = 0;
 
         var index = streams.home.length - 1;
-        lastMax = streams.home.length;
+        
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text(index + '@' + tweet.user + ': ' + tweet.message);
+          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+
           $tweet.appendTo($body);
           index -= 1;
         }
 
         var $btn = $('<div><button class="btn btn-default" id="target1">More Tweets</button></div>')
         $btn.appendTo($body);
-
-
-        $("#target1").click(function(){ 
-            var $newSetOfTweets = $('<div></div>');
-            $newSetOfTweets.html('');
-            var index = streams.home.length - 1;
-            while(index >= 0){
-              var tweet = streams.home[index];
-              var $tweet = $('<div></div>');
-              $tweet.text((index + lastMax) + '@' + tweet.user + ': ' + tweet.message);
-              $tweet.appendTo($newSetOfTweets);
-              index -= 1;
-            }
-            lastMax += streams.home.length;
-            $newSetOfTweets.prependTo($body);
-            $btn.appendTo($body);
-        });
       });
+
+
+
+    $(document).on('click','#target1',function(){
+      var $body = $('body');
+      var $btn = $('<div><button class="btn btn-default" id="target1">More Tweets</button></div>')
+      var $btn2;
+      $body.html('');
+
+        var index = streams.home.length - 1;
+        while(index >= 0){            var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+
+          $btn.appendTo($body);
+          $tweet.appendTo($body);
+  
+          index -= 1;
+        }
+            
+        $tweet.appendTo($body);
+
+        $btn.appendTo($body);
+    });
+
+    $(document).on('click','.userButton',function(){
+
+
+      var userName = $(this).text().toString().substring(1, $(this).text().toString().length);
+      console.log(userName);
+
+      var $body = $('body');
+      var $btn = $('<div><button class="btn btn-default" id="target1">More Tweets</button></div>')
+      var $btn2;
+      $body.html('');
+
+        var index = streams.users[userName].length - 1;
+        while(index >= 0){            var tweet = streams.users[userName][index];
+          var $tweet = $('<div></div>');
+          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+
+          $btn.appendTo($body);
+          $tweet.appendTo($body);
+  
+          index -= 1;
+        }
+            
+        $tweet.appendTo($body);
+
+        $btn.appendTo($body);
+    });
 
     </script>
   </body>
