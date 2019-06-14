@@ -11,17 +11,23 @@
         var $body = $('body');
         $body.html('');
 
+        var $table = $('<table></table>');
 
         var index = streams.home.length - 1;
         
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
-
-          $tweet.appendTo($body);
+          if (index%2 == 0) {
+            $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+          } else {
+            $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+          }
+          $tweet.appendTo($table);
           index -= 1;
         }
+
+        $table.appendTo($body);
 
         var $btn = $('<div><button class="btn btn-default" id="target1">More Tweets</button></div>')
         $btn.appendTo($body);
@@ -35,20 +41,25 @@
       var $btn2;
       $body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){            var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+      var $table = $('<table></table>');
 
-          $btn.appendTo($body);
-          $tweet.appendTo($body);
-  
-          index -= 1;
-        }
-            
-        $tweet.appendTo($body);
+      var index = streams.home.length - 1;
+      while(index >= 0){            var tweet = streams.home[index];
+      var $tweet = $('<div></div>');
+      if (index%2 == 0) {
+        $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+      } else {
+        $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+      }
 
         $btn.appendTo($body);
+        $tweet.appendTo($table);
+  
+        index -= 1;
+      }
+      
+      $table.appendTo($body);
+      $btn.appendTo($body);
     });
 
     $(document).on('click','.userButton',function(){
@@ -62,20 +73,26 @@
       var $btn2;
       $body.html('');
 
-        var index = streams.users[userName].length - 1;
-        while(index >= 0){            var tweet = streams.users[userName][index];
-          var $tweet = $('<div></div>');
-          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+      var $table = $('<table></table>');
 
-          $btn.appendTo($body);
-          $tweet.appendTo($body);
-  
-          index -= 1;
+      var index = streams.users[userName].length - 1;
+      while(index >= 0){            var tweet = streams.users[userName][index];
+        var $tweet = $('<div></div>');
+
+        if (index%2 == 0) {
+          $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+        } else {
+          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
         }
-            
-        $tweet.appendTo($body);
 
         $btn.appendTo($body);
+        $tweet.appendTo($table);
+  
+        index -= 1;
+      }
+
+      $table.appendTo($body);
+      $btn.appendTo($body);
     });
 
     </script>
