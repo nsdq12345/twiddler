@@ -3,6 +3,9 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+
+    <script src="moment.js"></script>
+    <script src="livestamp.js"></script>
   </head>
   <body>
     <script>
@@ -19,9 +22,9 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           if (index%2 == 0) {
-            $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+            $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + ' [<span data-livestamp="' + tweet.created_at.toString() + '"></span>]</div>');
           } else {
-            $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+            $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + ' [<span data-livestamp="' + tweet.created_at.toString() + '"></span>]</div>');
           }
           $tweet.appendTo($table);
           index -= 1;
@@ -47,9 +50,9 @@
       while(index >= 0){            var tweet = streams.home[index];
       var $tweet = $('<div></div>');
       if (index%2 == 0) {
-        $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+        $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + ' [<span data-livestamp="' + tweet.created_at.toString() + '"></span>]</div>');
       } else {
-        $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+        $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + ' [<span data-livestamp="' + tweet.created_at.toString() + '"></span>]</div>');
       }
 
         $btn.appendTo($body);
@@ -57,7 +60,7 @@
   
         index -= 1;
       }
-      
+
       $table.appendTo($body);
       $btn.appendTo($body);
     });
@@ -82,7 +85,7 @@
         if (index%2 == 0) {
           $tweet.html('<div style="background-color:lightgray">'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
         } else {
-          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + " [" + tweet.created_at.toString() + "]</div>");
+          $tweet.html('<div>'+index+'<button class="btn btn-default userButton" id="'+tweet.user+'">@'+tweet.user+'</button>: ' + tweet.message + ' [<span data-livestamp="' + tweet.created_at.toString() + '"></span>]</div>');
         }
 
         $btn.appendTo($body);
